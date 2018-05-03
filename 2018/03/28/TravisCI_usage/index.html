@@ -16,14 +16,14 @@
 <meta property="og:site_name" content="HHH&#39;s Blog">
 <meta property="og:description" content="序言昨天与同事讨论Hexo博客，了解到了一个工具叫 Travis CI。即兴之下，查阅使用方法，尝试使用并写下此文。 以往本人的部署方式是：hexo使用的部署命令是把生成好的静态文件上传到仓库中的，所以，在其他电脑上同步下来的只是生成后的静态文件而已，不是源码。 到这里就会想到能不能这样：将源码同步到远程仓库后，可以实现自动生成部署呢？答案是肯定的，可以通过Travis CI来实现。 本文介绍 T">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://a298003154.github.io/img/2018-03-28/travis_ci_01.png">
-<meta property="og:image" content="https://a298003154.github.io/img/2018-03-28/travis_ci_02.png">
-<meta property="og:image" content="https://a298003154.github.io/img/2018-03-28/travis_ci_03.png">
-<meta property="og:updated_time" content="2018-05-03T06:06:42.841Z">
+<meta property="og:image" content="https://a298003154.github.io/uploads/2018-03-28/travis_ci_01.png">
+<meta property="og:image" content="https://a298003154.github.io/uploads/2018-03-28/travis_ci_02.png">
+<meta property="og:image" content="https://a298003154.github.io/uploads/2018-03-28/travis_ci_03.png">
+<meta property="og:updated_time" content="2018-05-03T06:21:25.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Travis-ci 构建自动化博客">
 <meta name="twitter:description" content="序言昨天与同事讨论Hexo博客，了解到了一个工具叫 Travis CI。即兴之下，查阅使用方法，尝试使用并写下此文。 以往本人的部署方式是：hexo使用的部署命令是把生成好的静态文件上传到仓库中的，所以，在其他电脑上同步下来的只是生成后的静态文件而已，不是源码。 到这里就会想到能不能这样：将源码同步到远程仓库后，可以实现自动生成部署呢？答案是肯定的，可以通过Travis CI来实现。 本文介绍 T">
-<meta name="twitter:image" content="https://a298003154.github.io/img/2018-03-28/travis_ci_01.png">
+<meta name="twitter:image" content="https://a298003154.github.io/uploads/2018-03-28/travis_ci_01.png">
   
     <link rel="alternative" href="/atom.xml" title="HHH&#39;s Blog" type="application/atom+xml">
   
@@ -195,9 +195,9 @@
 </ul>
 </blockquote>
 <p>上述条件都准备好，就可以开始使用 Travis CI 了。</p>
-<p>（1）访问官方网站 <a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci.org</a>，点击右上角的个人头像，使用 Github 账户登陆 Travis CI。<br><img src="/img/2018-03-28/travis_ci_01.png" alt="" title="登陆"></p>
+<p>（1）访问官方网站 <a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci.org</a>，点击右上角的个人头像，使用 Github 账户登陆 Travis CI。<br><img src="/uploads/2018-03-28/travis_ci_01.png" alt="" title="登陆"></p>
 <p>（2）Travis 会列出 Github 上面你的所有仓库，以及你所属于的组织。此时，选择你需要 Travis 帮你构建的仓库，打开仓库旁边的开关。一旦激活了一个仓库，Travis 会监听这个仓库的所有变化。</p>
-<p>在右上角你的账户名点击进入 Profile，在Repositories tab页点击Sync now同步你的github项目。<br><img src="/img/2018-03-28/travis_ci_02.png" alt="" title="激活并监听仓库"></p>
+<p>在右上角你的账户名点击进入 Profile，在Repositories tab页点击Sync now同步你的github项目。<br><img src="/uploads/2018-03-28/travis_ci_02.png" alt="" title="激活并监听仓库"></p>
 <h2 id="配置Travis"><a href="#配置Travis" class="headerlink" title="配置Travis"></a>配置Travis</h2><p>（1）新建配置文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 博客项目文件夹根目录</span><br><span class="line">$ touch .travis.yml</span><br></pre></td></tr></table></figure></p>
 <p>（2）在项目的根目录建立 <strong>.travis</strong> 文件夹<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir .travis</span><br></pre></td></tr></table></figure></p>
 <p>（3）复制ssh文件 <strong>id_rsa</strong> 到 <strong>.travis</strong> 目录下<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 博客项目文件夹根目录/.travis</span><br></pre></td></tr></table></figure></p>
@@ -211,7 +211,7 @@
 <p>（2）Hexo配置文件<br>打开Hexo配置文件 <strong>_config.yml</strong>，编辑如下信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:a298003154/a298003154.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
 <h2 id="更新-发布博客项目"><a href="#更新-发布博客项目" class="headerlink" title="更新/发布博客项目"></a>更新/发布博客项目</h2><p>（1）初始化本地仓库<br>切换到项目根目录下，删除原来部署时产生的.git文件夹。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure></p>
 <p>（2）提交推送4步走<br>提交本地修改，关联远程仓库，推送至github仓库。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment"># 添加文件</span></span><br><span class="line">$ git add .</span><br><span class="line">$ <span class="comment"># 提交修改</span></span><br><span class="line">$ git commit -m <span class="string">"test travis"</span></span><br><span class="line">$ <span class="comment"># 将github仓库改为自己的</span></span><br><span class="line">$ git remote add origin git@github.com:a298003154/a298003154.github.io.git</span><br><span class="line">$ <span class="comment"># 推送至远程仓库</span></span><br><span class="line">$ git push -u origin dev</span><br></pre></td></tr></table></figure></p>
-<p>push本地的代码至远程仓库之后，在 <a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci.org</a> 后台查看相关情况。<br>下面是成功的结果：<br><img src="/img/2018-03-28/travis_ci_03.png" alt="" title="发布成功"></p>
+<p>push本地的代码至远程仓库之后，在 <a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci.org</a> 后台查看相关情况。<br>下面是成功的结果：<br><img src="/uploads/2018-03-28/travis_ci_03.png" alt="" title="发布成功"></p>
 <h2 id="报错问题"><a href="#报错问题" class="headerlink" title="报错问题"></a>报错问题</h2><p>1.Windows用户可能会出现如下错误:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The command &quot;openssl aes-256-cbc -K $encrypted_xxxxxxxxxxx_key -iv $encrypted_xxxxxxxxxxx_iv -in .travis/id_rsa.enc -out ~/.ssh/id_rsa -d&quot; failed and exited with 1 during.</span><br></pre></td></tr></table></figure></p>
 <p>原因是travis在执行加密操作生成的加密信息位数不对。之后在ubuntu/linux系统中操作就一切正常。</p>
 <p>如果不想安装虚拟机，还有另外一种方式实现。</p>
